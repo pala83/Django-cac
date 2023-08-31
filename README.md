@@ -9,7 +9,9 @@ Proyecto web creado utilizando el framework de desarrollo Django
 - Ramiro Burgos
 
 ## Indice
-- []()
+- [Instalación de entorno para desarrollo](#instalación-de-entorno-para-desarrollo)
+    - [Pre-requisitos](#pre-requisitos)
+    - [Pasos](#pasos)
 
 # Instalación de entorno para desarrollo
 El repositorio es publico y de finalidad académica, cualquiera que desee desarrollar sobre este proyecto debe seguir los siguientes pasos.
@@ -24,7 +26,7 @@ El repositorio es publico y de finalidad académica, cualquiera que desee desarr
 
 #### Clonar el repositorio
 ~~~ git
-git clone 
+git clone https://github.com/pala83/Django-cac.git
 ~~~
 
 #### Crear un entorno virtual y activarlo
@@ -33,13 +35,22 @@ cd Django-cac
 python3 -m venv venv
 ~~~
 > activacion en windows
-~~~
+~~~ git
 cd .\venv\Scripts
 .\activate
 cd ../..
 ~~~
 > activacion en linux
-~~~
+~~~ git
 source venv/bin/activate
 ~~~
 
+#### instalar dependencias
+~~~ git
+pip install -r requirements.txt
+~~~
+
+#### Variables de entorno
+necesarias para poder utilizar el proyecto
+> Solicitar el archivo .env al dueño del repositorio
+- Pegar el archivo **.env** dentro de la carpeta ecommerce/ecommerce/
