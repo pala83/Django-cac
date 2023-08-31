@@ -1,0 +1,19 @@
+
+# ignorar entorno virtual
+venv
+venv/*
+
+# por si algun desarrollador utiliza vs code o intellij
+.vscode
+.vscode/
+.idea
+.idea/
+
+# Archivos de cache y generador por Django
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# La configuracion de claves y accesos privados
+.env
