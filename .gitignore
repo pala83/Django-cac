@@ -16,4 +16,4 @@ __pycache__
 *.pyd
 
 # La configuracion de claves y accesos privados
-.env
+# .env
