@@ -2,7 +2,12 @@ from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='home'),
+    path('', views.index, name='index'),
+    path('home/', views.index, name='home'),
+    path('cervezas/', views.index, name='cervezas'),
+    path('sucursales/', views.index, name='sucursales'),
+    path('nosotros/', views.index, name='nosotros'),
+    path('contacto/', views.contacto, name='contacto'),
     path('contacto/<str:nombre>', views.contacto, name='contacto'),
 #    path('alumnos/listado', views.alumnos_listado, name='alumnos_listado'),
 #    path('alumnos/detalle/<str:nombre_alumno>', views.alumno_detalle, name='alumnos_detalle'),
