@@ -9,42 +9,20 @@
         <article class="pr_block-wrapper">
             <div class="pr_logos-container">
                 <ul class="pr_logos-wrapper">
-                    <li><img src="assets/logos/01-kolsch.png"/></li>
-                    <li><img src="assets/logos/02-irish-stout.png"/></li>
-                    <li><img src="assets/logos/03-altbier.png"/></li>
-                    <li><img src="assets/logos/04-stolichno.png"/></li>
-                    <li><img src="assets/logos/05-pilsener.png"/></li>
-                    <li><img src="assets/logos/06-guinnes.png"/></li>
-                    <li><img src="assets/logos/07-camdem-pale-ale.png"/></li>
-                    <li><img src="assets/logos/08-ipa-green.png"/></li>
-                    <li><img src="assets/logos/09-smithwicks.png"/></li>
-                    <li><img src="assets/logos/10-dunkel.png"/></li>
-                    <li><img src="assets/logos/11-pillus.png"/></li>
-                    <li><img src="assets/logos/12-old-vienna.png"/></li>
-                    <li><img src="assets/logos/13-barley.png"/></li>
-                    <li><img src="assets/logos/14-black-scottish-stout.png"/></li>
-                    <li><img src="assets/logos/15-kostriber.png"/></li>
-                    <li><img src="assets/logos/16-london-porter.png"/></li>
+                    {% for logo in logos %}
+                        {% with alt_text=logo|slice:"3:"|cut:".png" %}
+                        <li><img src="{% static 'core/assets/logos/' %}{{ logo }}" alt="{{ alt_text }}"/></li>
+                        {% endwith %}
+                    {% endfor %}
                 </ul>
             </div>
             <div class="pr_logos-container">
                 <ul class="pr_logos-wrapper">
-                    <li><img src="assets/logos/01-kolsch.png"/></li>
-                    <li><img src="assets/logos/02-irish-stout.png"/></li>
-                    <li><img src="assets/logos/03-altbier.png"/></li>
-                    <li><img src="assets/logos/04-stolichno.png"/></li>
-                    <li><img src="assets/logos/05-pilsener.png"/></li>
-                    <li><img src="assets/logos/06-guinnes.png"/></li>
-                    <li><img src="assets/logos/07-camdem-pale-ale.png"/></li>
-                    <li><img src="assets/logos/08-ipa-green.png"/></li>
-                    <li><img src="assets/logos/09-smithwicks.png"/></li>
-                    <li><img src="assets/logos/10-dunkel.png"/></li>
-                    <li><img src="assets/logos/11-pillus.png"/></li>
-                    <li><img src="assets/logos/12-old-vienna.png"/></li>
-                    <li><img src="assets/logos/13-barley.png"/></li>
-                    <li><img src="assets/logos/14-black-scottish-stout.png"/></li>
-                    <li><img src="assets/logos/15-kostriber.png"/></li>
-                    <li><img src="assets/logos/16-london-porter.png"/></li>
+                    {% for logo in logos %}
+                        {% with alt_text=logo|slice:"3:"|cut:".png" %}
+                        <li><img src="{% static 'core/assets/logos/' %}{{ logo }}" alt="{{ alt_text }}"/></li>
+                        {% endwith %}
+                    {% endfor %}
                 </ul>
             </div>
         </article>

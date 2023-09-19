@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="{% static 'core/assets/favicon.svg' %}" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +20,8 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    {% include "core/header.html" %}
-    {% include "core/verificador.html" %}
+    {% include "core/componentes/header.html" %}
+    {% include "core/componentes/verificador.html" %}
     {% block content %}{% endblock %}
     <script src="{% static 'core/js/script.js' %}"></script>
     <script src="{% static 'core/js/verificador.js' %}"></script>

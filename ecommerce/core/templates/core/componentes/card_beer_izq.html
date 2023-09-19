@@ -1,0 +1,29 @@
+{% load static %}
+<section class="card-beer">
+    <div class="imagen">
+        {% with alt_text=cerveza.botella|cut:".png" %}
+            <img src="{% static 'core/assets/birras/' %}{{ cerveza.botella }}" alt="{{alt_text}}">
+        {% endwith %}
+    </div>
+    <div class="descripcion">
+        <h3>{{cerveza.nombre}}</h3>
+        <h4>{{cerveza.cualidades}}</h4>
+        <p>{{cerveza.descripcion}}</p>
+        <ul>
+            <li>
+                <h3>{{cerveza.alcohol}}</h3>
+                <h4>Alcohol</h4>
+            </li>
+            <li>
+                <h3>{{cerveza.ibu}}</h3>
+                <h4>IBU</h4>
+            </li>
+            <li>
+                {% with alt_text=cerveza.tapa|cut:".png" %}
+                    <img src="{% static 'core/assets/birras/' %}{{ cerveza.tapa }}" alt="{{alt_text}}">
+                {% endwith %}
+                <h4>Tapa</h4>
+            </li>
+        </ul>
+    </div>
+</section>
