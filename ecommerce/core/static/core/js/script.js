@@ -4,13 +4,14 @@ const sucursales = ["Brewery Playa Grande","Brewery Constitución", "Brewery San
 
 document.addEventListener("DOMContentLoaded",()=>{
     const url = window.location.pathname.split("/");
-    const path = url[url.length-1].slice(0,-5);
+    const path = url[url.length-2];
+    console.log(path)
     switch(path){
         case"index":
             const contador = document.querySelector("#odometer");
             odometer(contador);
             break;
-        case"sucursales":
+        case "sucursales":
             let pagina=1;
             const comentarios = document.querySelector("#idComentarios");
             const paginadoIzquierda = document.querySelector("#pagIzq");
@@ -90,19 +91,6 @@ document.addEventListener("DOMContentLoaded",()=>{
         default:
             console.log("este error no deberia ocurrir");
     }
-    const btnCruz = document.querySelector("#cruz");
-    const btnDespliegue = document.querySelector("#desp");
-    const nav = document.querySelector("#nav");
-    btnCruz.addEventListener("click",()=>{
-        nav.style.transform = "translate(-100%)";
-        btnCruz.style.display = "none";
-        btnDespliegue.style.display = "initial";
-    });
-    btnDespliegue.addEventListener("click",()=>{
-        nav.style.transform = "translate(0)";
-        btnCruz.style.display = "initial";
-        btnDespliegue.style.display = "none";
-    })
 });
 
 async function enviarMail(form, data){

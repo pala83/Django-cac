@@ -1,6 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from datetime import datetime
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.urls import reverse
+from .forms import ContactoForm
 
 def index(request):
     logos = [
@@ -197,7 +198,20 @@ def cervezas(request):
     return render(request, "core/cervezas.html", context)
 
 def contacto(request):
-    return render(request, "core/contacto.html")
+    print(request.POST)
+    if request.method == "POST":
+        formulario = ContactoForm(request.POST)
+        if formulario.is_valid():
+            messages.info(request, "Su consulta fue enviada con exito.")
+            return redirect(reverse("index"))
+    else:
+        formulario = ContactoForm()
+
+
+    context ={
+        'contacto_form': formulario
+    }
+    return render(request, "core/contacto.html", context)
 
 #def contacto(request, nombre):
 #    return HttpResponse(f"<h1>Hola {nombre}</h1>")
