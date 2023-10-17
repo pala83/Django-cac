@@ -81,3 +81,16 @@ El error se debe a que al descargar el archivo `.env` windows decide cambiarle e
 
 ### Solucion
 Renombrar el archivo `env` a `.env`
+
+> En linux
+## No instala PSYCOPG2
+> Guia de solucion para el problema en [Link](https://stackoverflow.com/questions/11618898/pg-config-executable-not-found)
+
+Este error aparece al intentar instalar psycopg2 con el comando `pip install psycopg2`
+![error psycopg2](imagenes-readme/error-psycopg2.png)
+
+### Solucion
+Instalar la dependencia que contiene las configuraciones de desarrollo para utilizar `postgres-devel`  
+Dependencia `libpq-dev` en Debian/Ubuntu, `libpq-devel` en Centos/Fedora/Cygwin/Babun.
+
+**Instalacion para Debian:** `sudo apt install libpq-dev`
