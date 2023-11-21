@@ -37,7 +37,7 @@ def cervezas(request):
             'alcohol': "5%",
             'ibu': "22",
             'tapa': "tapa-black-horse.png",
-            'botella': "botella-black-horde.jpg",
+            'botella': "botella-black-horse.jpg",
             'tipo': "rubia"
         },
         {
@@ -191,6 +191,7 @@ def cervezas(request):
             'tipo': "negra"
         }
     ]
+    
     context = {
         'cervezas': cervezas,
         'tipos': ['rubia', 'roja', 'negra']
@@ -206,12 +207,14 @@ def contacto(request):
             return redirect(reverse("index"))
     else:
         formulario = ContactoForm()
-
-
     context ={
         'contacto_form': formulario
     }
     return render(request, "core/contacto.html", context)
+
+def proovedores(request):
+    
+    return render(request, "core/proovedores.html")
 
 #def contacto(request, nombre):
 #    return HttpResponse(f"<h1>Hola {nombre}</h1>")

@@ -17,25 +17,37 @@ class Persona(models.Model):
 
     class Meta:
         abstract = True
-
+ 
     def mostrar(self):
-        return f'''Nombre: {self.nombre} \n
-                   Apellido: {self.apellido} \n
-                   Email: {self.email} \n
-                   DNI: {self.dni} \n'''
+        return f'''{self.dni} - {self.nombre} - {self.apellido}'''
     
     def __str__(self):
         return self.mostrar()
-    
-class Cerveza(models.Model):
-    marca = models.CharField(max_length=50, verbose_name="Marca")
-    tipo = models.CharField(max_length=3, verbose_name="Tipo")
-    vencimiento = models.DateField(verbose_name="Fecha vencimiento", null=True)
 
-    def clean_vencimiento(self):
-        if self.cleaned_data['vencimiento'] and self.cleaned_data['vencimiento'] < timezone.now().date:
-            raise ValidationError("La cerveza no puede estar vencida.")
-        return self.cleaned_data['vencimiento']
+class Cualidad(models.Model):
+    cualidad = models.CharField(max_length=50, verbose_name="Tipo")
+
+    def __str__(self) -> str:
+        return self.cualidad
+    
+class Cliente(Persona):
+    nickname = models.CharField(max_length=50, verbose_name="Nickname")
+    password = models.CharField(max_length=45, verbose_name="Pass")
+
+class Cerveza(models.Model):
+    marca = models.CharField(max_length=100, verbose_name="Marca")
+    cualidades = models.ManyToManyField(Cualidad, verbose_name="Cualidades")
+    descripcion = models.TextField(blank=True, null=True, verbose_name="Descripcion")
+    alcohol = models.DecimalField(max_digits=5, decimal_places=1, verbose_name="Alcohol")
+    ibu = models.IntegerField(verbose_name="Ibu")
+    tapa = models.ImageField(upload_to="assets/tapas/", blank=True, null=True, verbose_name="Tapa")
+    botella = models.ImageField(upload_to="assets/botellas/", blank=True, null=True, verbose_name="Botella")
+    tipo = models.CharField(max_length=3, verbose_name="Tipo")
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, blank=True, null=True)
+    stock = models.IntegerField(verbose_name="Stock", null=True, default=0)
+
+    def __str__(self):
+        return f"{self.marca}"
 
 class Proovedor(Persona):
     empresa = models.CharField(max_length=50, verbose_name="Empresa")
@@ -47,13 +59,21 @@ class IngresoInsumos(models.Model):
     proovedor = models.ForeignKey(Proovedor, on_delete=models.RESTRICT)
     cerveza = models.ForeignKey(Cerveza, on_delete=models.RESTRICT)
     fecha = models.DateField(verbose_name="Fecha de ingreso")
+    cantidad = models.IntegerField(verbose_name="Cantidad")
+
+    def clean_cantidad(self):
+        if self.cleaned_data['cantidad'] <= 0:
+            raise ValidationError("La cantidad ingresada debe ser sueprior a 0")
+        return self.cleaned_data['cantidad']
 
     def clean_fecha(self):
         if self.cleaned_data['fecha'] and self.cleaned_data['fecha'] < timezone.now().date:
             raise ValidationError("La fecha de ingreso no puede ser inferior a la fecha de Hoy.")
         return self.cleaned_data['fecha']
     
-class Cliente(Persona):
-    nickname = models.CharField(max_length=50, verbose_name="Nickname")
-    password = models.CharField(max_length=45, verbose_name="Pass")
-    cerveza = models.ForeignKey(Cerveza, on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        formatted_date = self.fecha.strftime("%d/%m/%Y")
+        return f"{formatted_date} - ({self.cantidad}){self.cerveza.marca} - {self.proovedor.empresa}"
+
+
+

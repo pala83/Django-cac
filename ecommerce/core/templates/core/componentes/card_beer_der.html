@@ -7,7 +7,7 @@
         <ul>
             <li>
                 {% with alt_text=cerveza.tapa|cut:".png" %}
-                    <img src="{% static 'core/assets/birras/' %}{{ cerveza.tapa }}" alt="{{alt_text}}">
+                    <img src="{% static 'core/assets/tapas/' %}{{ cerveza.tapa }}" alt="{{alt_text}}">
                 {% endwith %}
                 <h4>Tapa</h4>
             </li>
@@ -23,7 +23,7 @@
     </div>
     <div class="imagen">
         {% with alt_text=cerveza.botella|cut:".png" %}
-            <img src="{% static 'core/assets/birras/' %}{{ cerveza.botella }}" alt="{{alt_text}}">
+            <img src="{% static 'core/assets/botellas/' %}{{ cerveza.botella }}" alt="{{alt_text}}">
         {% endwith %}
     </div>
 </section>
