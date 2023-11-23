@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from .models import Cerveza
 
 
 class FormStyle(forms.TextInput):
@@ -23,12 +24,16 @@ class ContactoForm(forms.Form):
         
         return self.cleaned_data["nombre"]
 
-    def clean(self):
-        pass
-        # Este if simula una busqueda en la base de datos
-#        if self.cleaned_data["nombre"] == "Carlos" and self.cleaned_data["apellido"] == "Lopez":
- #           raise ValidationError("El usuario Carlos Lopez ya existe")
-        
-        # Si el usuario no existe lo damos de alta
+class AltaCervezaModelForm(forms.ModelForm):
+    class Meta:
+        model = Cerveza
+        fields = '__all__'
+    
+    def clean_alcohol(self):
+        alcohol = self.alcohol.strip()
 
-  #      return self.cleaned_data
+        if alcohol > 0 and alcohol%2 != 0:
+            raise ValidationError("La dosis de alcohol podria matar a una persona")
+        
+        self.changed_data['alcohol'] = alcohol
+        return self.changed_data['alcohol']

@@ -4,7 +4,7 @@
 {% block title %}Cervezas{% endblock %}
 
 {% block content %}
-<main id="main" class="container-beer blur">
+<main id="main" class="container-beer container-beer-grid blur">
     <nav class="nav-beer">
         <h1 class="titulo-primario">Nuestras cervezas</h1>
         <div class="nav-list">
@@ -19,13 +19,9 @@
     </nav>
     {% for tipo in tipos %}
         <h2 id="{{tipo}}" class="delimitador">cervezas {{tipo}}s</h2>
-        {% for cerveza in cervezas %}
-            {% if cerveza.tipo == tipo %}
-                {% if forloop.counter|divisibleby:2 %}
-                    {% include "core/componentes/card_beer_der.html" %}
-                {% else %}
-                    {% include "core/componentes/card_beer_izq.html" %}
-                {% endif %}
+        {% for cerveza in lista %}
+            {% if cerveza.tipo == tipo|upper|slice:":3" %}
+                {% include "core/componentes/card_beer.html" %}
             {% endif %}
         {% endfor %}
     {% endfor %}

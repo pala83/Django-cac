@@ -10,6 +10,11 @@ body{
     font-size: 16px;
 }
 
+dl, ol, ul{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 .head-nav{
     transform: translate(0);
     z-index: 50;
@@ -164,34 +169,34 @@ body{
     position: absolute;
 }
 
-main.container{
+main.contenedor{
     z-index: -1;
     padding-left: 150px;
     width: 100vw;
     height: 100vh;
 }
 
-main.container .fondo{
+main.contenedor .fondo{
     width: 100%;
     height: 100vh;
     background: url(../assets/pared-birra.png) content-box;
     background-size: auto 100%;
 }
 
-main.container .contenido .titulo-vistoso{
+main.contenedor .contenido .titulo-vistoso{
     font-family: 'Acme', sans-serif;
     text-transform: uppercase;
     grid-area: titulo;
     font-size: 3.5rem;
 }
 
-main.container .contenido .titulo-vistoso p{
+main.contenedor .contenido .titulo-vistoso p{
     font-family: 'Acme', sans-serif;
     text-transform: initial;
     font-size: .3em;
 }
 
-main.container .contenido{
+main.contenedor .contenido{
     padding: 180px 50px 0px 50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -202,7 +207,7 @@ main.container .contenido{
     grid-row-gap: 60px;
 }
 
-main.container .contenido .card{
+main.contenedor .contenido .card{
     background-color: #D9670480;
     border-radius: 25px;
     box-shadow: 0px 0px 5px 1px black;
@@ -212,6 +217,11 @@ main.container .contenido .card{
     text-align: center;
     color: white;
     padding: 10px;
+}
+
+main.container-beer-grid{
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
 .card .title{
@@ -293,29 +303,51 @@ main.container .contenido .card{
     width: 100%;
 }
 
+#sin-stock{
+    background-color: rgba(255, 0, 0,.5);
+}
+.sin-stock{
+    color: white;
+    font-weight: bold;
+}
+
 .container-beer .card-beer{
     display: flex;
     background-color: #fff;
     border-radius: 20px;
-    margin: 50px;
-    height: 400px;
-    width: 100%;
+    font-size: 14px;
+    margin: 10px;
+    padding: 10px;
+
 }
 
 .card-beer .imagen{
     display: flex;
-    padding: 20px 50px 0px 50px;
-    height: 80%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.card-beer .imagen img{
+    height: 200px;
+}
+.card-beer .imagen button{
+    margin-top: 20px;
 }
 
 .container-beer .descripcion{
     display: flex;
     flex-wrap: wrap;
-    padding: 80px 80px 30px 80px;
+    margin: 10px;
 }
 
-.container-beer .descripcion h3{
-    font-size: 2.5rem;
+.container-beer .descripcion > h3{
+    font-size: 2em;
+}
+.container-beer .descripcion > h4{
+    font-size: 1.5em;
+}
+.container-beer .descripcion p{
+    font-size: 1em;
 }
 
 .container-beer .descripcion ul{
@@ -336,9 +368,14 @@ main.container .contenido .card{
     justify-content: flex-end;
 }
 
+.container-beer .descripcion ul li img{
+    width: 70%;
+}
+
 nav.nav-beer{
     width: 100%;
     text-align: center;
+    grid-column: span 2;
 }
 
 .titulo-primario{
@@ -389,6 +426,7 @@ nav.nav-beer .nav-list ul li a{
     text-align: center;
     background: url(../assets/malta.png);
     background-size: 7%;
+    grid-column: span 2;
 }
 
 /*==================sucursales.html====================*/

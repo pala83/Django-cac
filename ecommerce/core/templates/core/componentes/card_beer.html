@@ -1,0 +1,48 @@
+{% load static %}
+{% if cerveza.stock == 0 %}
+<section id="sin-stock"class="card-beer">
+    <div class="descripcion">
+        <h3>{{cerveza.marca}} - <span class="sin-stock">SIN STOCK</span></h3>
+{% else %}
+<section class="card-beer">
+    <div class="descripcion">
+        <h3>{{cerveza.marca}}</h3>
+{% endif %}
+        <h4>
+            {% for cualidad in cerveza.cualidades.all %}
+                {{cualidad.cualidad}} /
+            {% endfor %}
+        </h4>
+        <p>{{cerveza.descripcion}}</p>
+        <ul>
+            <li>
+                <h3>{{cerveza.alcohol}}</h3>
+                <h4>Alcohol</h4>
+            </li>
+            <li>
+                <h3>{{cerveza.ibu}}</h3>
+                <h4>IBU</h4>
+            </li>
+            <li>
+                <h3>{{cerveza.stock}}</h3>
+                <h4>Stock</h4>
+            </li>
+            <li>
+                {% with alt_text=cerveza.tapa|cut:".png" %}
+                    <img src="{% static 'core/' %}{{ cerveza.tapa }}" alt="{{alt_text}}">
+                {% endwith %}
+                <h4>Tapa</h4>
+            </li>
+        </ul>
+    </div>
+    <div class="imagen">
+        {% with alt_text=cerveza.botella|cut:".png" %}
+            <img src="{% static 'core/' %}{{ cerveza.botella }}" alt="{{alt_text}}">
+            {% if cerveza.stock == 0 %}
+            <button type="button" class="btn btn-danger disabled">Comprar</button>
+            {% else %}
+            <button type="button" class="btn btn-success">Comprar</button>
+            {% endif %}
+        {% endwith %}
+    </div>
+</section>

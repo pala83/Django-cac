@@ -1,8 +1,13 @@
 from django.urls import path, re_path
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+
+    path('proovedores/login/', auth_views.LoginView.as_view(template_name='core/login.html'),name='login'),
+    path('proovedores/logout/', auth_views.LogoutView.as_view(), name='logout'),    
+
     path('home/', views.index, name='home'),
     path('cervezas/', views.cervezas, name='cervezas'),
     path('sucursales/', views.index, name='sucursales'),
