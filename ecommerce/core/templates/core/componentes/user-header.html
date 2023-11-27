@@ -1,0 +1,9 @@
+<div class="head-user">
+    {% if not user.is_authenticated %}
+        <p></p>
+        {% include "core/componentes/login.html" %}
+    {% else %}
+        <p>Buen dia <strong>{{user.first_name|capfirst}}</strong></p>
+        {% include "core/componentes/logout.html" %}
+    {% endif %}
+</div>

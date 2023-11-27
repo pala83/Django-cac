@@ -1,0 +1,15 @@
+{% load static %}
+<form class="form-login" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+    </div>
+    <div class="">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+    </div>
+    
+    <input class="submit" type="submit" value="login">
+    <input type="hidden" name="next" value="{{ next }}">
+</form>

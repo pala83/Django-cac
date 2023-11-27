@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Alta Proovedor{% endblock %}
+
+{% block content %}
+<main id="main" class="container-beer blur">
+    
+    {% include "core/componentes/user-header.html" %}
+    <h1 class="titulo-primario">alta Proovedor</h1>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data" class="mb-5 contact-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{form.nombre.label_tag}}
+                {{form.nombre}}
+            </div>
+            <div class="form-group">
+                {{form.apellido.label_tag}}
+                {{form.apellido}}
+            </div>
+            <div class="form-group">
+                {{form.dni.label_tag}}
+                {{form.dni}}
+            </div>
+            <div class="form-group">
+                {{form.ciudad.label_tag}}
+                {{form.ciudad}}
+            </div>
+            <div class="form-group">
+                {{form.email.label_tag}}
+                {{form.email}}
+            </div>
+            <div class="form-group">
+                {{form.empresa.label_tag}}
+                {{form.empresa}}
+            </div>
+            <div class="form-group">
+                {{form.telefono.label_tag}}
+                {{form.telefono}}
+            </div>
+            <button type="submit" class="btn btn-success">Guardar Proovedor</button>
+        </form>
+    </div>
+</main>
+{%endblock%}

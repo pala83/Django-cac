@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Cerveza
+from .models import Cerveza, Proovedor, IngresoInsumos
 
 
 class FormStyle(forms.TextInput):
@@ -28,6 +28,10 @@ class AltaCervezaModelForm(forms.ModelForm):
     class Meta:
         model = Cerveza
         fields = '__all__'
+        exclude = ['cliente', 'stock']
+        widgets = {
+            'descripcion': forms.Textarea(attrs={'rows':4}),
+        }
     
     def clean_alcohol(self):
         alcohol = self.alcohol.strip()
@@ -37,3 +41,18 @@ class AltaCervezaModelForm(forms.ModelForm):
         
         self.changed_data['alcohol'] = alcohol
         return self.changed_data['alcohol']
+    
+class AltaProovedorModelForm(forms.ModelForm):
+    class Meta:
+        model = Proovedor
+        fields = '__all__'
+
+class AltaIngresoInsumosModelForm(forms.ModelForm):
+    class Meta:
+        model = IngresoInsumos
+        fields = ['proovedor', 'cerveza', 'fecha', 'cantidad']
+
+    def __init__(self, *args, **kwargs):
+        super(AltaIngresoInsumosModelForm, self).__init__(*args, **kwargs)
+        self.fields['proovedor'].queryset = Proovedor.objects.all()
+        self.fields['cerveza'].queryset = Cerveza.objects.all()

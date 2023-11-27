@@ -5,7 +5,87 @@
 
 {% block content %}
 <main id="main" class="container-beer blur">
-    <h1 class="titulo-primario">PROOVEDORES</h1>
+    
+    {% include "core/componentes/user-header.html" %}
+    {% if not user.is_authenticated %}
+    <h1 class="titulo-primario">proovedores</h1>
+        <div class="container">
+            <h1>Bienvenido a Nuestra Cervecería Favorita</h1>
+            <p>Querido Proveedor de Cerveza,</p>
+            <p>En CERVECERIA BREWERY, nos enorgullece colaborar con proveedores que comparten nuestra pasión por la calidad, la innovación y, por supuesto, ¡la deliciosa cerveza! Estamos emocionados de presentar a nuestros clientes las increíbles variedades de cerveza que nos proporcionas.</p>    
+            <p>En cada sorbo, tus cervezas cuentan una historia de dedicación y artesanía. Nos inspira tu compromiso con la excelencia, y estamos agradecidos por la oportunidad de ofrecer tus productos en nuestro sitio. Desde las cervezas clásicas hasta las creaciones más audaces, tu variedad refleja la diversidad y la riqueza de la cultura cervecera.</p>
+            <p>En BREWERY, no solo valoramos la calidad de tus productos, sino también la relación que hemos construido contigo. Trabajando juntos, compartiendo conocimientos y experiencias, creamos una alianza que va más allá de la transacción comercial. Juntos, celebramos la pasión por la cerveza y el placer de brindar momentos inolvidables a nuestros clientes.</p>
+            <p>Gracias por ser el alma detrás de nuestras opciones de cerveza. Estamos ansiosos de seguir creciendo y explorando nuevas oportunidades juntos. Aquí en BREWERY, levantamos nuestra copa y brindamos por la calidad, la colaboración y por todo lo que está por venir.</p>
+            <p><i>Salud</i>,</p>
+            <i>Fulanito Brewery segundo.</i>
+        </div>
 
+    {% else %}
+    <h1 class="titulo-primario">ingreso de insumos</h1>
+    <h1 class="delimitador">Ingresos de insumos recientes:</h1>
+        <div class="container d-flex justify-content-evenly mt-3 mb-3">
+            <a href="{% url 'proovedores_alta_proovedor' %}" class="btn btn-primary">Nuevo Proovedor</a>
+            <a href="{% url 'proovedores_alta_cerveza' %}" class="btn btn-primary">Nueva Cerveza</a>
+            <a href="{% url 'proovedores_alta_insumos' %}" class="btn btn-primary">Ingresar Insumos</a>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-lg-4">
+                    <ul class="list-group">
+                        {% for proovedor in proovedores %}
+                        <a href="{% url 'proovedores_detalle' id_proovedor=proovedor.id %}" class="nav-link">
+                            {% if id_actual == proovedor.id %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center active">
+                            {% else %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {% endif %}
+                                {{proovedor.empresa}}
+                            </li>
+                        </a>
+                        {% empty %}
+                        <a href="" class="nav-link">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Sin proovedores registrados
+                            </li>
+                        </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-7 col-lg-8 order-md-last">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Cerveza</th>
+                                <th>Cantidad</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for insumo in insumos %}
+                            <tr>
+                                <td>
+                                    {% with alt_text=insumo.cerveza.botella|cut:".png" %}
+                                        <img height="50px" src="{% static 'core/' %}{{ insumo.cerveza.botella }}" alt="{{alt_text}}">
+                                    {% endwith %}
+                                </td>
+                                <td>{{insumo.cerveza.marca}}</td>
+                                <td>{{insumo.cantidad}}</td>
+                                <td>{{insumo.fecha}}</td>
+                            </tr>
+                            {% empty %}
+                            </tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 </main>
 {%endblock%}

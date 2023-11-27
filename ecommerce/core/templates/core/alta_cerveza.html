@@ -1,0 +1,50 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Alta Cerveza{% endblock %}
+
+{% block content %}
+<main id="main" class="container-beer blur">
+    
+    {% include "core/componentes/user-header.html" %}
+    <h1 class="titulo-primario">alta cerveza</h1>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data" class="mb-5 contact-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{form.marca.label_tag}}
+                {{form.marca}}
+            </div>
+            <div class="form-group">
+                {{form.tipo.label_tag}}
+                {{form.tipo}}
+            </div>
+            <div class="form-group">
+                {{form.alcohol.label_tag}}
+                {{form.alcohol}}
+            </div>
+            <div class="form-group">
+                {{form.ibu.label_tag}}
+                {{form.ibu}}
+            </div>
+            <div class="form-group">
+                {{form.descripcion.label_tag}}
+                {{form.descripcion}}
+            </div>
+            <div class="form-group">
+                {{form.cualidades.label_tag}}
+                {{form.cualidades}}
+            </div>
+            <div class="form-group">
+                {{form.botella.label_tag}}
+                {{form.botella}}
+            </div>
+            <div class="form-group">
+                {{form.tapa.label_tag}}
+                {{form.tapa}}
+            </div>
+            <button type="submit" class="btn btn-success">Guardar Cerveza</button>
+        </form>
+    </div>
+</main>
+{%endblock%}

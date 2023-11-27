@@ -55,6 +55,9 @@ class Proovedor(Persona):
     telefono = models.CharField(max_length=15, verbose_name="Telefono")
     cerveza = models.ManyToManyField(Cerveza, through="IngresoInsumos")
 
+    def __str__(self):
+        return f'''{self.empresa} - {super().__str__()}'''
+
 class IngresoInsumos(models.Model):
     proovedor = models.ForeignKey(Proovedor, on_delete=models.RESTRICT)
     cerveza = models.ForeignKey(Cerveza, on_delete=models.RESTRICT)

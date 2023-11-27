@@ -1,0 +1,6 @@
+{% load static %}
+<form class="form-login" method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <input class="submit" type="submit" value="logout">
+    <input type="hidden" name="next" value="{{ next }}">
+</form>

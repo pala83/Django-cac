@@ -5,13 +5,17 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
 
-    path('proovedores/login/', auth_views.LoginView.as_view(template_name='core/login.html'),name='login'),
+    path('proovedores/login/', auth_views.LoginView.as_view(template_name='core/proovedores.html'),name='login'),
     path('proovedores/logout/', auth_views.LogoutView.as_view(), name='logout'),    
 
     path('home/', views.index, name='home'),
     path('cervezas/', views.cervezas, name='cervezas'),
     path('sucursales/', views.index, name='sucursales'),
-    path('proovedores/', views.proovedores, name='proovedores'),
+    path('proovedores/', views.ProovedoresView.as_view(), name='proovedores'),
+    path('proovedores/<int:id_proovedor>/', views.ProovedoresView.as_view(), name='proovedores_detalle'),
+    path('proovedores/alta_proovedor/', views.ProovedorCreateView.as_view(), name='proovedores_alta_proovedor'),
+    path('proovedores/alta_cerveza/', views.CervezaCreateView.as_view(), name='proovedores_alta_cerveza'),
+    path('proovedores/alta_insumos/', views.IngresoInsumosCreateView.as_view(), name='proovedores_alta_insumos'),
     path('contacto/', views.contacto, name='contacto'),
     path('contacto/<str:nombre>', views.contacto, name='contacto'),
 #    path('alumnos/listado', views.alumnos_listado, name='alumnos_listado'),

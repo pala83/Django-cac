@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Proovedores - cervezas{% endblock %}
+
+{% block content %}
+<main id="main" class="container-beer blur">
+    {% include "core/componentes/user-header.html" %}
+    <h1 class="titulo-primario">lista cervezas</h1>
+    <div>
+        {% for cerveza in lista_cervezas %}
+            <p>{{cerveza.marca}}</p>
+        {% endfor %}
+    </div>
+    <a href="{% url 'mostrarCervezas' %}">modificar</a>
+</main>
+{%endblock%}
